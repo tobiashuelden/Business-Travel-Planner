@@ -1,0 +1,71 @@
+<div>
+  <div>
+    <h1>
+      Chatroom #<%= @the_chatroom.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/chatrooms">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_chatroom/<%= @the_chatroom.id %>">
+          Delete chatroom
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Company
+      </dt>
+      <dd>
+        <%= @the_chatroom.company_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_chatroom.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_chatroom.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit chatroom
+    </h2>
+
+    <form action="/modify_chatroom/<%= @the_chatroom.id %>"  method="post" >
+      <div>
+        <label for="company_id_box">
+          Company
+        </label>
+
+        <input type="text" id="company_id_box" name="query_company_id" value="<%= @the_chatroom.company_id %>">
+      </div>
+
+      <button>
+        Update chatroom
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

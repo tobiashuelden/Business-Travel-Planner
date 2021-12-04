@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Budget #<%= @the_budget.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/budgets">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_budget/<%= @the_budget.id %>">
+          Delete budget
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Budget
+      </dt>
+      <dd>
+        <%= @the_budget.budget %>
+      </dd>
+
+      <dt>
+        Budget type
+      </dt>
+      <dd>
+        <%= @the_budget.budget_type %>
+      </dd>
+
+      <dt>
+        Business travel
+      </dt>
+      <dd>
+        <%= @the_budget.business_travel_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_budget.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_budget.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit budget
+    </h2>
+
+    <form action="/modify_budget/<%= @the_budget.id %>"  method="post" >
+      <div>
+        <label for="budget_box">
+          Budget
+        </label>
+
+        <input type="text" id="budget_box" name="query_budget" value="<%= @the_budget.budget %>">
+      </div>
+
+      <div>
+        <label for="budget_type_box">
+          Budget type
+        </label>
+
+        <input type="text" id="budget_type_box" name="query_budget_type" value="<%= @the_budget.budget_type %>">
+      </div>
+
+      <div>
+        <label for="business_travel_id_box">
+          Business travel
+        </label>
+
+        <input type="text" id="business_travel_id_box" name="query_business_travel_id" value="<%= @the_budget.business_travel_id %>">
+      </div>
+
+      <button>
+        Update budget
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

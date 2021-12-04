@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Business travel #<%= @the_business_travel.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/business_travels">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_business_travel/<%= @the_business_travel.id %>">
+          Delete business travel
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Start date
+      </dt>
+      <dd>
+        <%= @the_business_travel.start_date %>
+      </dd>
+
+      <dt>
+        End date
+      </dt>
+      <dd>
+        <%= @the_business_travel.end_date %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_business_travel.user_id %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_business_travel.description %>
+      </dd>
+
+      <dt>
+        Travel purpose
+      </dt>
+      <dd>
+        <%= @the_business_travel.travel_purpose %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_business_travel.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_business_travel.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit business travel
+    </h2>
+
+    <form action="/modify_business_travel/<%= @the_business_travel.id %>"  method="post" >
+      <div>
+        <label for="start_date_box">
+          Start date
+        </label>
+
+        <input type="date" id="start_date_box" name="query_start_date" value="<%= @the_business_travel.start_date %>">
+      </div>
+
+      <div>
+        <label for="end_date_box">
+          End date
+        </label>
+
+        <input type="date" id="end_date_box" name="query_end_date" value="<%= @the_business_travel.end_date %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_business_travel.user_id %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_business_travel.description %>">
+      </div>
+
+      <div>
+        <label for="travel_purpose_box">
+          Travel purpose
+        </label>
+
+        <input type="text" id="travel_purpose_box" name="query_travel_purpose" value="<%= @the_business_travel.travel_purpose %>">
+      </div>
+
+      <button>
+        Update business travel
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

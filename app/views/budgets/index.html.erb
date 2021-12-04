@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all budgets
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new budget
+    </h2>
+
+    <form action="/insert_budget" method="post">
+      <div>
+        <label for="budget_box">
+          Budget
+        </label>
+
+        <input type="text" id="budget_box" name="query_budget">
+      </div>
+
+      <div>
+        <label for="budget_type_box">
+          Budget type
+        </label>
+
+        <input type="text" id="budget_type_box" name="query_budget_type">
+      </div>
+
+      <div>
+        <label for="business_travel_id_box">
+          Business travel
+        </label>
+
+        <input type="text" id="business_travel_id_box" name="query_business_travel_id">
+      </div>
+
+      <button>
+        Create budget
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Budget
+        </th>
+
+        <th>
+          Budget type
+        </th>
+
+        <th>
+          Business travel
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_budgets.each do |a_budget| %>
+      <tr>
+        <td>
+          <%= a_budget.id %>
+        </td>
+
+        <td>
+          <%= a_budget.budget %>
+        </td>
+
+        <td>
+          <%= a_budget.budget_type %>
+        </td>
+
+        <td>
+          <%= a_budget.business_travel_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_budget.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_budget.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/budgets/<%= a_budget.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

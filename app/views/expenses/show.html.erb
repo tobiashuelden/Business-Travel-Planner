@@ -1,0 +1,146 @@
+<div>
+  <div>
+    <h1>
+      Expense #<%= @the_expense.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/expenses">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_expense/<%= @the_expense.id %>">
+          Delete expense
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Trip
+      </dt>
+      <dd>
+        <%= @the_expense.trip_id %>
+      </dd>
+
+      <dt>
+        Expense
+      </dt>
+      <dd>
+        <%= @the_expense.expense %>
+      </dd>
+
+      <dt>
+        Expense type
+      </dt>
+      <dd>
+        <%= @the_expense.expense_type %>
+      </dd>
+
+      <dt>
+        Payment type
+      </dt>
+      <dd>
+        <%= @the_expense.payment_type %>
+      </dd>
+
+      <dt>
+        Invoice
+      </dt>
+      <dd>
+        <%= @the_expense.invoice %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_expense.description %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_expense.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_expense.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit expense
+    </h2>
+
+    <form action="/modify_expense/<%= @the_expense.id %>"  method="post" >
+      <div>
+        <label for="trip_id_box">
+          Trip
+        </label>
+
+        <input type="text" id="trip_id_box" name="query_trip_id" value="<%= @the_expense.trip_id %>">
+      </div>
+
+      <div>
+        <label for="expense_box">
+          Expense
+        </label>
+
+        <input type="text" id="expense_box" name="query_expense" value="<%= @the_expense.expense %>">
+      </div>
+
+      <div>
+        <label for="expense_type_box">
+          Expense type
+        </label>
+
+        <input type="text" id="expense_type_box" name="query_expense_type" value="<%= @the_expense.expense_type %>">
+      </div>
+
+      <div>
+        <label for="payment_type_box">
+          Payment type
+        </label>
+
+        <input type="text" id="payment_type_box" name="query_payment_type" value="<%= @the_expense.payment_type %>">
+      </div>
+
+      <div>
+        <label for="invoice_box">
+          Invoice
+        </label>
+
+        <input type="text" id="invoice_box" name="query_invoice" value="<%= @the_expense.invoice %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_expense.description %>">
+      </div>
+
+      <button>
+        Update expense
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

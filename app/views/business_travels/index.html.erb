@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all business travels
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new business travel
+    </h2>
+
+    <form action="/insert_business_travel" method="post">
+      <div>
+        <label for="start_date_box">
+          Start date
+        </label>
+
+        <input type="date" id="start_date_box" name="query_start_date">
+      </div>
+
+      <div>
+        <label for="end_date_box">
+          End date
+        </label>
+
+        <input type="date" id="end_date_box" name="query_end_date">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="travel_purpose_box">
+          Travel purpose
+        </label>
+
+        <input type="text" id="travel_purpose_box" name="query_travel_purpose">
+      </div>
+
+      <button>
+        Create business travel
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Start date
+        </th>
+
+        <th>
+          End date
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Travel purpose
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_business_travels.each do |a_business_travel| %>
+      <tr>
+        <td>
+          <%= a_business_travel.id %>
+        </td>
+
+        <td>
+          <%= a_business_travel.start_date %>
+        </td>
+
+        <td>
+          <%= a_business_travel.end_date %>
+        </td>
+
+        <td>
+          <%= a_business_travel.user_id %>
+        </td>
+
+        <td>
+          <%= a_business_travel.description %>
+        </td>
+
+        <td>
+          <%= a_business_travel.travel_purpose %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_business_travel.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_business_travel.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/business_travels/<%= a_business_travel.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

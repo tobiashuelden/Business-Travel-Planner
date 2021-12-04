@@ -1,0 +1,163 @@
+<div>
+  <div>
+    <h1>
+      Trip #<%= @the_trip.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/trips">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_trip/<%= @the_trip.id %>">
+          Delete trip
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Start a
+      </dt>
+      <dd>
+        <%= @the_trip.start_a %>
+      </dd>
+
+      <dt>
+        End b
+      </dt>
+      <dd>
+        <%= @the_trip.end_b %>
+      </dd>
+
+      <dt>
+        Start date
+      </dt>
+      <dd>
+        <%= @the_trip.start_date %>
+      </dd>
+
+      <dt>
+        End date
+      </dt>
+      <dd>
+        <%= @the_trip.end_date %>
+      </dd>
+
+      <dt>
+        Trip type
+      </dt>
+      <dd>
+        <%= @the_trip.trip_type %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_trip.description %>
+      </dd>
+
+      <dt>
+        Business travel
+      </dt>
+      <dd>
+        <%= @the_trip.business_travel_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trip.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_trip.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit trip
+    </h2>
+
+    <form action="/modify_trip/<%= @the_trip.id %>"  method="post" >
+      <div>
+        <label for="start_a_box">
+          Start a
+        </label>
+
+        <input type="text" id="start_a_box" name="query_start_a" value="<%= @the_trip.start_a %>">
+      </div>
+
+      <div>
+        <label for="end_b_box">
+          End b
+        </label>
+
+        <input type="text" id="end_b_box" name="query_end_b" value="<%= @the_trip.end_b %>">
+      </div>
+
+      <div>
+        <label for="start_date_box">
+          Start date
+        </label>
+
+        <input type="datetime-local" id="start_date_box" name="query_start_date"
+         value="<%= @the_trip.start_date %>">
+      </div>
+
+      <div>
+        <label for="end_date_box">
+          End date
+        </label>
+
+        <input type="datetime-local" id="end_date_box" name="query_end_date"
+         value="<%= @the_trip.end_date %>">
+      </div>
+
+      <div>
+        <label for="trip_type_box">
+          Trip type
+        </label>
+
+        <input type="text" id="trip_type_box" name="query_trip_type" value="<%= @the_trip.trip_type %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_trip.description %>">
+      </div>
+
+      <div>
+        <label for="business_travel_id_box">
+          Business travel
+        </label>
+
+        <input type="text" id="business_travel_id_box" name="query_business_travel_id" value="<%= @the_trip.business_travel_id %>">
+      </div>
+
+      <button>
+        Update trip
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
