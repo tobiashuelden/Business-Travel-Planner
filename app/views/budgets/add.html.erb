@@ -1,23 +1,58 @@
+<hr>
+
+<div>
+
+  <div>
+  <%if session[:indicator]==FALSE%>
+    <a href="/add_business_travels_overview">
+      Finish Business Travel Plan 
+    </a>
+    <%else%>
+    <a href="/business_travels/<%=session[:business_travel_id]%>">
+      Finish Business Travel Plan 
+    </a>
+    <%end%>
+  </div>
+
+  <div>
+    <h2>
+      Add a new budget
+    </h2>
+
+    <form action="/insert_budget" method="post">
+      <div>
+        <label for="budget_box">
+          Budget
+        </label>
+
+        <input type="text" id="budget_box" name="query_budget">
+      </div>
+
+      <div>
+        <label for="budget_type_box">
+          Budget type
+        </label>
+
+        <input type="text" id="budget_type_box" name="query_budget_type">
+      </div>
+
+
+      <button>
+        Create budget
+      </button>
+    </form>
+  </div>
+</div>
+
 <div>
   <div>
     <h1>
-      Budget for Business Travel: <%=session[:business_travel_name]%>
+      Budgets for Business Travel: <%=session[:business_travel_name]%>
     </h1>
   </div>
 </div>
 
-      <div>
-        <a href="/business_travels/<%=session[:business_travel_id]%>">
-          Go back
-        </a>
-      </div>
-
-
-           <div>
-        <a href="/add_budget">
-          Add budget to business travel plan
-        </a>
-      </div>
+<% @list_of_budgets =  Budget.all.where({:business_travel_id => session[:business_travel_id]}).order({ :created_at => :desc })%>
 
 <% if @list_of_budgets.present?%>
 
@@ -35,10 +70,6 @@
 
         <th>
           Budget type
-        </th>
-
-        <th>
-          Business travel
         </th>
 
         <th>
@@ -65,10 +96,6 @@
 
         <td>
           <%= a_budget.budget_type %>
-        </td>
-
-        <td>
-          <%= a_budget.business_travel_id %>
         </td>
 
         <td>

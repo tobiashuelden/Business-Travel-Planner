@@ -1,0 +1,56 @@
+<div>
+  <div>
+    <h2>
+      Add a new expense
+    </h2>
+
+    <form action="/insert_expense" method="post">
+
+    <%session[:trip_id]=params.fetch('trip_id').to_i%>
+
+      <div>
+        <label for="expense_box">
+          Expense
+        </label>
+
+        <input type="text" id="expense_box" name="query_expense">
+      </div>
+
+      <div>
+        <label for="expense_type_box">
+          Expense type
+        </label>
+
+        <input type="text" id="expense_type_box" name="query_expense_type">
+      </div>
+
+      <div>
+        <label for="payment_type_box">
+          Payment type
+        </label>
+
+        <input type="text" id="payment_type_box" name="query_payment_type">
+      </div>
+
+      <div>
+        <label for="invoice_box">
+          Invoice
+        </label>
+
+        <input type="text" id="invoice_box" name="query_invoice">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <button>
+        Create expense
+      </button>
+    </form>
+  </div>
+</div>

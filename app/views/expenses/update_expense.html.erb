@@ -1,0 +1,57 @@
+<div>
+  <div>
+    <h2>
+      Edit expense
+    </h2>
+
+    <%@the_expense = Expense.where({:id=>params.fetch('path_id').to_i}).at(0)%>
+    <%session[:trip_id]=@the_expense.trip_id%>
+
+    <form action="/modify_expense/<%= @the_expense.id %>"  method="post" >
+      <div>
+        <label for="expense_box">
+          Expense
+        </label>
+
+        <input type="text" id="expense_box" name="query_expense" value="<%= @the_expense.expense %>">
+      </div>
+
+      <div>
+        <label for="expense_type_box">
+          Expense type
+        </label>
+
+        <input type="text" id="expense_type_box" name="query_expense_type" value="<%= @the_expense.expense_type %>">
+      </div>
+
+      <div>
+        <label for="payment_type_box">
+          Payment type
+        </label>
+
+        <input type="text" id="payment_type_box" name="query_payment_type" value="<%= @the_expense.payment_type %>">
+      </div>
+
+      <div>
+        <label for="invoice_box">
+          Invoice
+        </label>
+
+        <input type="text" id="invoice_box" name="query_invoice" value="<%= @the_expense.invoice %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_expense.description %>">
+      </div>
+
+      <button>
+        Update expense
+      </button>
+    </form>
+  </div>
+</div>
+

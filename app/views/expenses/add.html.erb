@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Trips for Business Travel: <%=session[:business_travel_name]%> 
+      Expenses for Business Travel: <%=session[:business_travel_name]%> 
     </h1>
   </div>
 </div>
@@ -12,23 +12,11 @@
         </a>
       </div>
 
-
-      <div>
-        <a href="/add_trip">
-          Add trip to business travel plan
-        </a>
-      </div>
-
-
 <% if @list_of_trips.present?%>
 <div>
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
-
         <th>
           Start a
         </th>
@@ -53,8 +41,20 @@
           Description
         </th>
 
+       <th>
+          Expense
+        </th>
+
         <th>
-          Business travel
+          Expense type
+        </th>
+
+        <th>
+          Payment type
+        </th>
+
+        <th>
+          Description
         </th>
 
         <th>
@@ -71,9 +71,6 @@
 
       <% @list_of_trips.each do |a_trip| %>
       <tr>
-        <td>
-          <%= a_trip.id %>
-        </td>
 
         <td>
           <%= a_trip.start_a %>
@@ -99,22 +96,54 @@
           <%= a_trip.description %>
         </td>
 
+       <%if a_trip.expenses.present?%>
+
         <td>
-          <%= a_trip.business_travel_id %>
+          <%= a_trip.expenses.expense %>
         </td>
 
         <td>
-          <%= time_ago_in_words(a_trip.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_trip.updated_at) %> ago
+          <%= a_trip.expenses.expense_type %>
         </td>
 
         <td>
-          <a href="/trips/<%= a_trip.id %>">
-            Show details
+          <%= a_trip.expenses.payment_type %>
+        </td>
+
+        <td>
+          <%= a_trip.expenses.description %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_trip.expenses.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_trip.expenses.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/update_expense/<%= a_trip.expenses.id %>">
+            Update Expense 
           </a>
         </td>
+
+        <td>
+          <a href="/delete_expense/<%= a_trip.expenses.id %>">
+            Delete Expense 
+          </a>
+        </td>
+
+      <%else%>
+
+
+        <td>
+          <a href="/add_expense/<%= a_trip.id %>">
+            Add Expense 
+          </a>
+        </td>
+      <%end%>
+
+
       </tr>
       <% end %>
     </table>
@@ -126,3 +155,7 @@
 <%end%>
 
 <hr>
+
+<h3>
+  <a href="/manage_expenses" >  Create Business Travel Invoice/Expense Report </a>
+</h3>

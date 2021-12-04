@@ -1,0 +1,44 @@
+<h1> Welcome <%=session[:user_name]%> </h1>
+
+
+
+<h3>
+Upcoming Business Travel:  
+<h4>
+<%if @description.present?%>
+<a href="/upcoming_business_travel"><%=@description%> </a>
+<%else%>  
+No upcoming business travels
+<%end%>  
+
+</h4>
+</h3>
+
+<h3>
+Manage Business Travels:  
+
+<h4>
+  <a href="/add_business_travels"> Add Business Travels</a>
+</h4>
+
+<h4>
+  <a href="/business_travels_previous">Previous Business Travels</a>
+</h4>
+
+<h4>
+  <a href="/business_travels_future">Future Business Travels</a>
+</h4>
+</h3>
+
+<h3>
+Chatrooms:  
+
+<h4>
+  <a href="/">Public</a>
+</h4>
+
+<h4>
+  <a href="/"> <%=@company%></a>
+</h4>
+</h3>
+
