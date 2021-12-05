@@ -33,9 +33,9 @@ class BudgetsController < ApplicationController
 
     if the_budget.valid?
       the_budget.save
-      redirect_to("/budgets", { :notice => "Budget created successfully." })
+      redirect_to("/add_budget", { :notice => "Budget created successfully." })
     else
-      redirect_to("/budgets", { :notice => "Budget failed to create successfully." })
+      redirect_to("/add_budget", { :notice => "Budget failed to create successfully." })
     end
   end
 

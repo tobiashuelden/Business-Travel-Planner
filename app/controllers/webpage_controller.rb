@@ -21,7 +21,7 @@ class WebpageController < ApplicationController
     else
       @description = nil
     end
-    render({ :template => "pages/homepage.html.erb" })
+    render({ :template => "webpages/homepage.html.erb" })
 
   end
 

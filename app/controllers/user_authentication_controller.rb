@@ -47,14 +47,6 @@ class UserAuthenticationController < ApplicationController
     @user.company_name = params.fetch("query_company_name")
     @user.name = params.fetch("query_name")
     @user.company_id = params.fetch("query_company_id").to_i
-
-    @user = User.new
-    @user.email = "a"
-    @user.password = "b"
-    @user.password_confirmation = "c"
-    @user.company_name = "d"
-    @user.name = "e"
-    @user.company_id = 1
     
     save_status = @user.save
 

@@ -17,7 +17,7 @@ class BusinessTravelsController < ApplicationController
   end
 
   def overview
-    render({ :template => "pages/add.html.erb" })
+    render({ :template => "webpages/add.html.erb" })
   end
 
   def add
