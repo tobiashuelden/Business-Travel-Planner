@@ -94,3 +94,7 @@
 <%end%>
 
 <hr>
+
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<%= pie_chart Budget.where({:business_travel_id=>session[:business_travel_id]}).group(:budget_type).sum(:budget) %>

@@ -96,39 +96,39 @@
           <%= a_trip.description %>
         </td>
 
-       <%if a_trip.expenses.present?%>
+       <%if a_trip.expense.present?%>
 
         <td>
-          <%= a_trip.expenses.expense %>
+          <%= a_trip.expense.expense %>
         </td>
 
         <td>
-          <%= a_trip.expenses.expense_type %>
+          <%= a_trip.expense.expense_type %>
         </td>
 
         <td>
-          <%= a_trip.expenses.payment_type %>
+          <%= a_trip.expense.payment_type %>
         </td>
 
         <td>
-          <%= a_trip.expenses.description %>
+          <%= a_trip.expense.description %>
         </td>
 
         <td>
-          <%= time_ago_in_words(a_trip.expenses.created_at) %> ago
+          <%= time_ago_in_words(a_trip.expense.created_at) %> ago
         </td>
         <td>
-          <%= time_ago_in_words(a_trip.expenses.updated_at) %> ago
+          <%= time_ago_in_words(a_trip.expense.updated_at) %> ago
         </td>
 
         <td>
-          <a href="/update_expense/<%= a_trip.expenses.id %>">
+          <a href="/update_expense/<%= a_trip.expense.id %>">
             Update Expense 
           </a>
         </td>
 
         <td>
-          <a href="/delete_expense/<%= a_trip.expenses.id %>">
+          <a href="/delete_expense/<%= a_trip.expense.id %>">
             Delete Expense 
           </a>
         </td>
@@ -159,3 +159,10 @@
 <h3>
   <a href="/manage_expenses" >  Create Business Travel Invoice/Expense Report </a>
 </h3>
+
+
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<%= @list_of_trips.ids%>
+<%= pie_chart  Expense.where({:trip_id=>@list_of_trips.ids}).group(:expense_type).sum(:expense) %>
+<%= pie_chart  Expense.where({:trip_id=>@list_of_trips.ids}).group(:payment_type).count %>

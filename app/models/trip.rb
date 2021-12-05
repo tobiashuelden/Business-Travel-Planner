@@ -15,6 +15,6 @@
 #
 class Trip < ApplicationRecord
   belongs_to(:business_travel, { :required => true, :class_name => "BusinessTravel", :foreign_key => "business_travel_id" })
-  has_many(:expenses, { :class_name => "Expense", :foreign_key => "trip_id", :dependent => :destroy })
+  has_one(:expense, { :class_name => "Expense", :foreign_key => "trip_id", :dependent => :destroy })
   has_one(:user, { :through => :business_travel, :source => :user })
 end

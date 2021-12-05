@@ -15,6 +15,9 @@ gem 'sassc-rails'
 
 gem 'faker'
 
+gem 'chartkick'
+gem 'highcharts-rails'
+
 group :development do
   gem 'listen', '~> 3.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
