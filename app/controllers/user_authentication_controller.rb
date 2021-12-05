@@ -1,6 +1,6 @@
 class UserAuthenticationController < ApplicationController
   # Uncomment this if you want to force users to sign in before any other actions
-  # skip_before_action(:force_user_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
+  skip_before_action(:force_user_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
 
   def sign_in_form
     render({ :template => "user_authentication/sign_in.html.erb" })
@@ -18,7 +18,9 @@ class UserAuthenticationController < ApplicationController
         redirect_to("/user_sign_in", { :alert => "Incorrect password." })
       else
         session[:user_id] = user.id
-      
+        session[:user_name] = @user.name
+  
+        
         redirect_to("/", { :notice => "Signed in successfully." })
       end
     else
@@ -38,18 +40,28 @@ class UserAuthenticationController < ApplicationController
 
   def create
     @user = User.new
+
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.company_name = params.fetch("query_company_name")
     @user.name = params.fetch("query_name")
-    @user.company_id = params.fetch("query_company_id")
+    @user.company_id = params.fetch("query_company_id").to_i
 
+    @user = User.new
+    @user.email = "a"
+    @user.password = "b"
+    @user.password_confirmation = "c"
+    @user.company_name = "d"
+    @user.name = "e"
+    @user.company_id = 1
+    
     save_status = @user.save
 
     if save_status == true
       session[:user_id] = @user.id
-   
+      session[:user_name] = @user.name
+      
       redirect_to("/", { :notice => "User account created successfully."})
     else
       redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
@@ -67,7 +79,7 @@ class UserAuthenticationController < ApplicationController
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.company_name = params.fetch("query_company_name")
     @user.name = params.fetch("query_name")
-    @user.company_id = params.fetch("query_company_id")
+    @user.company_id = params.fetch("query_company_id").to_i
     
     if @user.valid?
       @user.save

@@ -15,6 +15,21 @@
 
   </head>
 
+    <p> <a href="/">Homepage</a> </p>
+
+
+  <%if session[:user_id].present?%>
+  <p> <a href="/user_sign_out">Sign out</a> </p>
+  <%end%>
+
+  <%if notice.present?%>
+  <p> <%=notice%> </p>
+  <%end%>
+
+  <%if alert.present?%>
+  <p> <%=alert%> </p>
+  <%end%>
+
   <body>
     <%= yield %>
   </body>

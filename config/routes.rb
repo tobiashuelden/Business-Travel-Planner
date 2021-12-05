@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get("/", { :controller => "webpage", :action => "homepage" })        
 
 
   # Routes for the Comment resource:
@@ -120,14 +121,20 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_expense", { :controller => "expenses", :action => "create" })
+
+  get("/add_expense/:trip_id", { :controller => "expenses", :action => "add_expense" })
           
   # READ
+  get("/manage_expenses", { :controller => "expenses", :action => "add" })
+
   get("/expenses", { :controller => "expenses", :action => "index" })
   
   get("/expenses/:path_id", { :controller => "expenses", :action => "show" })
   
   # UPDATE
   
+  get("/update_expense/:path_id", { :controller => "expenses", :action => "update_expense" })
+
   post("/modify_expense/:path_id", { :controller => "expenses", :action => "update" })
   
   # DELETE
@@ -139,7 +146,9 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_trip", { :controller => "trips", :action => "create" })
-          
+
+  get("/add_trip", { :controller => "trips", :action => "add" })
+
   # READ
   get("/trips", { :controller => "trips", :action => "index" })
   
@@ -158,6 +167,8 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_budget", { :controller => "budgets", :action => "create" })
+
+  get("/add_budget", { :controller => "budgets", :action => "add" })
           
   # READ
   get("/budgets", { :controller => "budgets", :action => "index" })
@@ -175,15 +186,25 @@ Rails.application.routes.draw do
 
   # Routes for the Business travel resource:
 
+  get("/upcoming_business_travel", { :controller => "business_travels", :action => "upcoming" })
+
   # CREATE
+  get("/add_business_travels_overview", { :controller => "business_travels", :action => "overview" })
+
+  get("/add_business_travels", { :controller => "business_travels", :action => "add" })
+
   post("/insert_business_travel", { :controller => "business_travels", :action => "create" })
           
   # READ
-  get("/business_travels", { :controller => "business_travels", :action => "index" })
-  
+  get("/business_travels_previous", { :controller => "business_travels", :action => "previous_index" })
+
+  get("/business_travels_future", { :controller => "business_travels", :action => "future_index" })
+
   get("/business_travels/:path_id", { :controller => "business_travels", :action => "show" })
   
   # UPDATE
+  
+  get("/update_business_travel/:path_id", { :controller => "business_travels", :action => "update_form" })
   
   post("/modify_business_travel/:path_id", { :controller => "business_travels", :action => "update" })
   

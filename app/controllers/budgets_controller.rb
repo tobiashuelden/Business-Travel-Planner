@@ -1,8 +1,16 @@
 class BudgetsController < ApplicationController
+
+  def add
+    render({ :template => "budgets/add.html.erb" })
+  end
+
   def index
     matching_budgets = Budget.all
-
+    matching_budgets = matching_budgets.where({:business_travel_id => session[:business_travel_id]})
+ 
     @list_of_budgets = matching_budgets.order({ :created_at => :desc })
+
+    session[:indicator] = TRUE
 
     render({ :template => "budgets/index.html.erb" })
   end
@@ -21,7 +29,7 @@ class BudgetsController < ApplicationController
     the_budget = Budget.new
     the_budget.budget = params.fetch("query_budget")
     the_budget.budget_type = params.fetch("query_budget_type")
-    the_budget.business_travel_id = params.fetch("query_business_travel_id")
+    the_budget.business_travel_id = session[:business_travel_id]
 
     if the_budget.valid?
       the_budget.save

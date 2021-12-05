@@ -1,9 +1,15 @@
 class TripsController < ApplicationController
+
+  def add
+    render({ :template => "trips/add.html.erb" })
+  end
+
   def index
     matching_trips = Trip.all
-
+    matching_trips = matching_trips.where({:business_travel_id => session[:business_travel_id]})
     @list_of_trips = matching_trips.order({ :created_at => :desc })
 
+    session[:indicator] = TRUE
     render({ :template => "trips/index.html.erb" })
   end
 
@@ -25,13 +31,13 @@ class TripsController < ApplicationController
     the_trip.end_date = params.fetch("query_end_date")
     the_trip.trip_type = params.fetch("query_trip_type")
     the_trip.description = params.fetch("query_description")
-    the_trip.business_travel_id = params.fetch("query_business_travel_id")
+    the_trip.business_travel_id = session[:business_travel_id]
 
     if the_trip.valid?
       the_trip.save
-      redirect_to("/trips", { :notice => "Trip created successfully." })
+      redirect_to("/add_trip", { :notice => "Trip created successfully." })
     else
-      redirect_to("/trips", { :notice => "Trip failed to create successfully." })
+      redirect_to("/add_trip", { :notice => "Trip failed to create successfully." })
     end
   end
 

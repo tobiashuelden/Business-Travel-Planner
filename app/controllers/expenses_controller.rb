@@ -7,6 +7,27 @@ class ExpensesController < ApplicationController
     render({ :template => "expenses/index.html.erb" })
   end
 
+  def add
+    matching_trips = Trip.all
+    matching_trips = matching_trips.where({:business_travel_id => session[:business_travel_id]})
+    @list_of_trips = matching_trips.order({ :created_at => :desc })
+
+    session[:indicator] = TRUE
+
+    render({ :template => "expenses/add.html.erb" })
+
+  end
+
+  def add_expense
+    render({ :template => "expenses/add_expense.html.erb" })
+
+  end
+
+  def update_expense
+    render({ :template => "expenses/update_expense.html.erb" })
+
+  end
+  
   def show
     the_id = params.fetch("path_id")
 
@@ -19,7 +40,7 @@ class ExpensesController < ApplicationController
 
   def create
     the_expense = Expense.new
-    the_expense.trip_id = params.fetch("query_trip_id")
+    the_expense.trip_id = session[:trip_id]
     the_expense.expense = params.fetch("query_expense")
     the_expense.expense_type = params.fetch("query_expense_type")
     the_expense.payment_type = params.fetch("query_payment_type")
@@ -28,9 +49,9 @@ class ExpensesController < ApplicationController
 
     if the_expense.valid?
       the_expense.save
-      redirect_to("/expenses", { :notice => "Expense created successfully." })
+      redirect_to("/manage_expenses", { :notice => "Expense created successfully." })
     else
-      redirect_to("/expenses", { :notice => "Expense failed to create successfully." })
+      redirect_to("/manage_expenses", { :notice => "Expense failed to create successfully." })
     end
   end
 
@@ -38,7 +59,7 @@ class ExpensesController < ApplicationController
     the_id = params.fetch("path_id")
     the_expense = Expense.where({ :id => the_id }).at(0)
 
-    the_expense.trip_id = params.fetch("query_trip_id")
+    the_expense.trip_id = session[:trip_id]
     the_expense.expense = params.fetch("query_expense")
     the_expense.expense_type = params.fetch("query_expense_type")
     the_expense.payment_type = params.fetch("query_payment_type")
@@ -47,9 +68,9 @@ class ExpensesController < ApplicationController
 
     if the_expense.valid?
       the_expense.save
-      redirect_to("/expenses/#{the_expense.id}", { :notice => "Expense updated successfully."} )
+      redirect_to("/manage_expenses", { :notice => "Expense updated successfully."} )
     else
-      redirect_to("/expenses/#{the_expense.id}", { :alert => "Expense failed to update successfully." })
+      redirect_to("/manage_expenses", { :alert => "Expense failed to update successfully." })
     end
   end
 
