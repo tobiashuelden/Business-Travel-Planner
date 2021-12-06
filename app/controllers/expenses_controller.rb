@@ -1,9 +1,9 @@
 class ExpensesController < ApplicationController
 
 def download_invoice
-  @invoice = Expense.where({:trip_id=>BusinessTravel.where({:id=>session[:business_travel_id]}).at(0).trips.ids}).first
+  @invoice = Expense.where({:trip_id=>BusinessTravel.where({:id=>session[:business_travel_id]}).at(0).trips.ids}).order(:trip_id)
 
-    render pdf: "Invoice No. #{session[:business_trip_id]}",
+    render pdf: "Invoice No. #{session[:business_travel_id]}",
     page_size: 'A4',
     template: "expenses/pdf.html.erb",
     layout: "pdf.html",

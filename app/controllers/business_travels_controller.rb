@@ -131,6 +131,6 @@ class BusinessTravelsController < ApplicationController
 
     the_business_travel.destroy
 
-    redirect_to("/business_travels", { :notice => "Business travel deleted successfully."} )
+    redirect_to("/", { :notice => "Business travel deleted successfully."} )
   end
 end

@@ -1,7 +1,7 @@
 <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
           <tr class="top">
-            <td colspan="4">
+            <td colspan="6">
               <table>
                 <tr>
                   <td class="title">
@@ -9,13 +9,10 @@
                   </td>
 
                   <td>
-                    Invoice #: <b><%= @invoice.id %></b>
+                    Invoice Business Travel #: <b><%= @invoice.first.trip.business_travel.id %></b>
                     <br>
-                    Created: <b><%= @invoice.created_at.strftime('%d/%m/%Y') %></b>
+                    Created: <b><%= Date.today.strftime('%d/%m/%Y') %></b>
                     <br>
-                    Due: <b><%= (@invoice.created_at + 1.month).strftime('%d/%m/%Y') %></b>
-                    <br>
-                    Status: <span class="<%= @invoice.status_class %>">TMP </span>
                   </td>
                 </tr>
               </table>
@@ -23,21 +20,15 @@
           </tr>
 
           <tr class="information">
-            <td colspan="4">
+            <td colspan="6">
               <table>
                 <tr>
                   <td>
-                    <b>Full Name</b><br>
-                    Adress<br>
-                    <i class="far fa-envelope"></i> Email<br>
-                    <i class="fas fa-phone"></i> Phone
-                  </td>
-
-                  <td>
-                    <b>Full Name</b><br>
-                    Adress<br>
-                    <i class="far fa-envelope"></i> Email<br>
-                    <i class="fas fa-phone"></i> Phone
+                    <b><%= @invoice.first.user.company_name %></b>
+                      <br>
+                    <b><%= @invoice.first.user.name %></b>
+                    <br>
+                    <i class="far fa-envelope"></i> <%= @invoice.first.user.email %>
                   </td>
                 </tr>
               </table>
@@ -45,70 +36,88 @@
           </tr>
 
           <tr class="heading">
-            <td>Payment Method</td>
-            <td colspan="2"></td>
-            <td class="right">Cache</td>
+            <td>Business Travel</td>
+            <td colspan="6"></td>
+            <td class="right">Travel Purpose</td>
           </tr>
 
           <tr class="details">
-            <td>Delivery Method</td>
-            <td colspan="2"></td>
-            <td class="right">1000</td>
+            <td><%=@invoice.first.trip.business_travel.description%></td>
+            <td colspan="6"></td>
+            <td class="right"><%=@invoice.first.trip.business_travel.travel_purpose%></td>
           </tr>
 
           <tr class="heading">
-            <td>Item</td>
-            <td class="right">Price</td>
-            <td class="right">Qty</td>
-            <td>Total</td>
+            <td class="left">Trip ID</td>
+            <td class="left">From</td>
+            <td class="left">To</td>
+            <td class="left">Start</td>
+            <td class="left">End</td>
+
+            <td class="right">Payment Method</td>
+            <td class="right">Expense Type</td>
+            <td class="right">Expense</td>
+
           </tr>
 
+         <% @invoice.each do |invoice_item| %>
             <tr class="item">
-                <td>
-                    <%= @invoice.id %><br>
-                    <small><%= @invoice.description %></small>
+                  <td class="left">
+                    <%= invoice_item.trip_id %><br>
+              <small><%= invoice_item.description %></small>
+
+                </td>
+                <td class="left">
+                <%if invoice_item.trip.start_a.present?%>
+                    <%= invoice_item.trip.start_a %><br>
+                    <%else%>
+                    NA <br>
+                    <%end%>
+                </td>
+                <td class="left">
+                                <%if invoice_item.trip.end_b.present?%>
+                    <%= invoice_item.trip.end_b %><br>
+                    <%else%>
+                    NA <br>
+                    <%end%>
+                </td>
+                <td class="left">
+                                <%if invoice_item.trip.start_date.present?%>
+                    <%= invoice_item.trip.start_date.strftime('%d/%m/%Y') %><br>
+                    <%else%>
+                    NA <br>
+                    <%end%>
+                </td>
+                <td class="left">
+                                <%if invoice_item.trip.end_date.present?%>
+                    <%= invoice_item.trip.end_date.strftime('%d/%m/%Y') %><br>
+                    <%else%>
+                    NA <br>
+                    <%end%>
                 </td>
 
                 <td class="right">
-                    <%= number_to_currency(@invoice.expense) %>
+                    <%= invoice_item.payment_type %>
                 </td>
 
                 <td class="right">
-                    x <%= @invoice.payment_type %>
+                    <%= invoice_item.expense_type %>
                 </td>
 
-                <td>
-                    <%= number_to_currency(@invoice.expense) %>
+                <td class="right">
+                    <%= number_to_currency(invoice_item.expense) %><br>
                 </td>
+
             </tr>
-
-          <tr>
-            <td colspan="4"></td>
-          </tr>
-
-          <tr>
-            <td colspan="2"></td>
-            <td><b>Subtotal</b></td>
-            <td><%= number_to_currency(@invoice.subtotal) %></td>
-          </tr>
-
-          <tr>
-            <td colspan="2"></td>
-            <td><b>Discount (<%= @invoice.expense %>%)</b></td>
-            <td>- <%= number_to_currency(@invoice.discount_calculated) %></td>
-          </tr>
-
-          <tr>
-            <td colspan="2"></td>
-            <td><b>VAT (<%= @invoice.expense %>%)</b></td>
-            <td>+ <%= number_to_currency(@invoice.vat_calculated) %></td>
-          </tr>
+         <% end %>
 
           <tr class="heading">
-            <td colspan="2"></td>
-            <td><b>TOTAL:</b></td>
+            <td colspan="6"></td>
             <td>
-               <b><%= number_to_currency(@invoice.total) %></b>
+            </td>
+
+            <td class="right">
+               <b>TOTAL: <%= number_to_currency(@invoice.sum(:expense)) %></b>
             </td>
           </tr>
         </table>
