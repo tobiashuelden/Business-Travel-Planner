@@ -18,6 +18,11 @@ gem 'faker'
 gem 'chartkick'
 gem 'highcharts-rails'
 
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.1.3'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 group :development do
   gem 'listen', '~> 3.2'
   gem 'spring-watcher-listen', '~> 2.0.0'

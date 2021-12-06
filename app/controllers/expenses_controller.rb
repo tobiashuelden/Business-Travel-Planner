@@ -1,4 +1,18 @@
 class ExpensesController < ApplicationController
+
+def download_invoice
+  @invoice = Expense.where({:trip_id=>BusinessTravel.where({:id=>session[:business_travel_id]}).at(0).trips.ids}).first
+
+    render pdf: "Invoice No. #{session[:business_trip_id]}",
+    page_size: 'A4',
+    template: "expenses/pdf.html.erb",
+    layout: "pdf.html",
+    orientation: "Landscape",
+    lowquality: true,
+    zoom: 1,
+    dpi: 75
+end
+
   def index
     matching_expenses = Expense.all
 

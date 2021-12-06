@@ -1,0 +1,115 @@
+<div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+          <tr class="top">
+            <td colspan="4">
+              <table>
+                <tr>
+                  <td class="title">
+                    <%= image_tag wicked_pdf_asset_base64('company_logo.png') %>
+                  </td>
+
+                  <td>
+                    Invoice #: <b><%= @invoice.id %></b>
+                    <br>
+                    Created: <b><%= @invoice.created_at.strftime('%d/%m/%Y') %></b>
+                    <br>
+                    Due: <b><%= (@invoice.created_at + 1.month).strftime('%d/%m/%Y') %></b>
+                    <br>
+                    Status: <span class="<%= @invoice.status_class %>">TMP </span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr class="information">
+            <td colspan="4">
+              <table>
+                <tr>
+                  <td>
+                    <b>Full Name</b><br>
+                    Adress<br>
+                    <i class="far fa-envelope"></i> Email<br>
+                    <i class="fas fa-phone"></i> Phone
+                  </td>
+
+                  <td>
+                    <b>Full Name</b><br>
+                    Adress<br>
+                    <i class="far fa-envelope"></i> Email<br>
+                    <i class="fas fa-phone"></i> Phone
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr class="heading">
+            <td>Payment Method</td>
+            <td colspan="2"></td>
+            <td class="right">Cache</td>
+          </tr>
+
+          <tr class="details">
+            <td>Delivery Method</td>
+            <td colspan="2"></td>
+            <td class="right">1000</td>
+          </tr>
+
+          <tr class="heading">
+            <td>Item</td>
+            <td class="right">Price</td>
+            <td class="right">Qty</td>
+            <td>Total</td>
+          </tr>
+
+            <tr class="item">
+                <td>
+                    <%= @invoice.id %><br>
+                    <small><%= @invoice.description %></small>
+                </td>
+
+                <td class="right">
+                    <%= number_to_currency(@invoice.expense) %>
+                </td>
+
+                <td class="right">
+                    x <%= @invoice.payment_type %>
+                </td>
+
+                <td>
+                    <%= number_to_currency(@invoice.expense) %>
+                </td>
+            </tr>
+
+          <tr>
+            <td colspan="4"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>Subtotal</b></td>
+            <td><%= number_to_currency(@invoice.subtotal) %></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>Discount (<%= @invoice.expense %>%)</b></td>
+            <td>- <%= number_to_currency(@invoice.discount_calculated) %></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>VAT (<%= @invoice.expense %>%)</b></td>
+            <td>+ <%= number_to_currency(@invoice.vat_calculated) %></td>
+          </tr>
+
+          <tr class="heading">
+            <td colspan="2"></td>
+            <td><b>TOTAL:</b></td>
+            <td>
+               <b><%= number_to_currency(@invoice.total) %></b>
+            </td>
+          </tr>
+        </table>
+    </div>

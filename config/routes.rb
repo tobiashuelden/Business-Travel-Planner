@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get("/", { :controller => "webpage", :action => "homepage" })        
 
+  get("/download_invoice.pdf", { :controller => "expenses", :action => "download_invoice" })        
 
   # Routes for the Comment resource:
 
