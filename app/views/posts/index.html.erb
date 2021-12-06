@@ -1,11 +1,21 @@
 <div>
+
+<%if session[:chatroom]=='public'%>
   <div>
     <h1>
-      List of all posts
+      Public Chatroom
     </h1>
   </div>
-</div>
 
+<%else%>
+  <div>
+    <h1>
+      <%=Company.where({:id=>session[:company_id]}).at(0).name%> Chatroom
+    </h1>
+  </div>
+
+</div>
+<%end%>
 <hr>
 
 <div>
@@ -15,13 +25,6 @@
     </h2>
 
     <form action="/insert_post" method="post">
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
 
       <div>
         <label for="content_box">
@@ -29,14 +32,6 @@
         </label>
 
         <input type="text" id="content_box" name="query_content">
-      </div>
-
-      <div>
-        <label for="chatroom_id_box">
-          Chatroom
-        </label>
-
-        <input type="text" id="chatroom_id_box" name="query_chatroom_id">
       </div>
 
       <button>
@@ -51,9 +46,6 @@
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           User
@@ -61,10 +53,6 @@
 
         <th>
           Content
-        </th>
-
-        <th>
-          Chatroom
         </th>
 
         <th>
@@ -77,24 +65,23 @@
 
         <th>
         </th>
+
+        <th>
+        </th>
+        <th>
+        </th>
+
       </tr>
 
       <% @list_of_posts.each do |a_post| %>
       <tr>
-        <td>
-          <%= a_post.id %>
-        </td>
 
         <td>
-          <%= a_post.user_id %>
+          <%= a_post.user.name %>
         </td>
 
         <td>
           <%= a_post.content %>
-        </td>
-
-        <td>
-          <%= a_post.chatroom_id %>
         </td>
 
         <td>
@@ -105,10 +92,18 @@
         </td>
 
         <td>
-          <a href="/posts/<%= a_post.id %>">
+          <a href="/comments/post/<%= a_post.id %>">
             Show details
           </a>
+
+        <%if a_post.user_id==session[:user_id]%>  
         </td>
+                <td>
+          <a href="/posts/<%= a_post.id %>">
+            Update Post
+          </a>
+        </td>
+        <% end %>
       </tr>
       <% end %>
     </table>

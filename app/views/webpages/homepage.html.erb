@@ -34,11 +34,13 @@ Manage Business Travels:
 Chatrooms:  
 
 <h4>
-  <a href="/">Public</a>
+  <a href="/posts/chatroom/public">Public</a>
 </h4>
 
 <h4>
-  <a href="/"> <%=@company%></a>
+  <a href="/posts/chatroom/<%=session[:company_id]%>"><%=@company%> </a>
 </h4>
 </h3>
+
+
 

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post("/insert_comment", { :controller => "comments", :action => "create" })
           
   # READ
-  get("/comments", { :controller => "comments", :action => "index" })
+  get("/comments/post/:path_id", { :controller => "comments", :action => "index" })
   
   get("/comments/:path_id", { :controller => "comments", :action => "show" })
   
@@ -104,8 +104,10 @@ Rails.application.routes.draw do
   post("/insert_post", { :controller => "posts", :action => "create" })
           
   # READ
-  get("/posts", { :controller => "posts", :action => "index" })
-  
+  get("/posts/chatroom/public", { :controller => "posts", :action => "public_index" })
+
+  get("/posts/chatroom/:company_id", { :controller => "posts", :action => "company_index" })
+
   get("/posts/:path_id", { :controller => "posts", :action => "show" })
   
   # UPDATE

@@ -1,12 +1,30 @@
 <div>
   <div>
     <h1>
-      List of all comments
+      <%=Post.where({:id=>params.fetch('path_id').to_i}).at(0).content%>
     </h1>
   </div>
 </div>
 
+<%session[:post_id]=params.fetch('path_id').to_i%>
+
 <hr>
+<%if session[:chatroom]=='public'%>
+      <div>
+        <a href="/posts/chatroom/public">
+          Go back
+        </a>
+      </div>
+<%else%>
+      <div>
+        <a href=<%="/posts/chatroom/#{session[:company_id]}"%>>
+          Go back
+        </a>
+      </div>
+
+<%end%>
+
+
 
 <div>
   <div>
@@ -23,14 +41,6 @@
         <input type="text" id="content_box" name="query_content">
       </div>
 
-      <div>
-        <label for="post_id_box">
-          Post
-        </label>
-
-        <input type="text" id="post_id_box" name="query_post_id">
-      </div>
-
       <button>
         Create comment
       </button>
@@ -44,15 +54,11 @@
     <table>
       <tr>
         <th>
-          ID
+          Name
         </th>
 
         <th>
           Content
-        </th>
-
-        <th>
-          Post
         </th>
 
         <th>
@@ -70,15 +76,11 @@
       <% @list_of_comments.each do |a_comment| %>
       <tr>
         <td>
-          <%= a_comment.id %>
+          <%= a_comment.post.user.name %>
         </td>
 
         <td>
           <%= a_comment.content %>
-        </td>
-
-        <td>
-          <%= a_comment.post_id %>
         </td>
 
         <td>
@@ -87,12 +89,13 @@
         <td>
           <%= time_ago_in_words(a_comment.updated_at) %> ago
         </td>
-
+        <%if a_comment.post.user.id=session[:user_id] %>
         <td>
           <a href="/comments/<%= a_comment.id %>">
             Show details
           </a>
         </td>
+        <%end%>
       </tr>
       <% end %>
     </table>

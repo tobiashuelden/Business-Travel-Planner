@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def index
     matching_comments = Comment.all
-
+    matching_comments = matching_comments.where({:post_id=>params.fetch('path_id').to_i})
     @list_of_comments = matching_comments.order({ :created_at => :desc })
 
     render({ :template => "comments/index.html.erb" })
@@ -20,13 +20,13 @@ class CommentsController < ApplicationController
   def create
     the_comment = Comment.new
     the_comment.content = params.fetch("query_content")
-    the_comment.post_id = params.fetch("query_post_id")
+    the_comment.post_id = session[:post_id]
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments", { :notice => "Comment created successfully." })
+      redirect_to("/comments/post/#{the_comment.post_id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/comments", { :notice => "Comment failed to create successfully." })
+      redirect_to("/comments/post/#{the_comment.post_id}", { :notice => "Comment failed to create successfully." })
     end
   end
 
@@ -35,22 +35,21 @@ class CommentsController < ApplicationController
     the_comment = Comment.where({ :id => the_id }).at(0)
 
     the_comment.content = params.fetch("query_content")
-    the_comment.post_id = params.fetch("query_post_id")
-
+    
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments/#{the_comment.id}", { :notice => "Comment updated successfully."} )
+      redirect_to("/comments/post/#{the_comment.post_id}", { :notice => "Comment updated successfully."} )
     else
-      redirect_to("/comments/#{the_comment.id}", { :alert => "Comment failed to update successfully." })
+      redirect_to("/comments/post/#{the_comment.post_id}", { :alert => "Comment failed to update successfully." })
     end
   end
 
   def destroy
     the_id = params.fetch("path_id")
     the_comment = Comment.where({ :id => the_id }).at(0)
-
+    post_id = the_comment.post_id
     the_comment.destroy
 
-    redirect_to("/comments", { :notice => "Comment deleted successfully."} )
+    redirect_to("/comments/post/#{post_id}", { :notice => "Comment deleted successfully."} )
   end
 end

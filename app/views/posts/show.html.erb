@@ -67,13 +67,7 @@
     </h2>
 
     <form action="/modify_post/<%= @the_post.id %>"  method="post" >
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
 
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_post.user_id %>">
-      </div>
 
       <div>
         <label for="content_box">
@@ -81,14 +75,6 @@
         </label>
 
         <input type="text" id="content_box" name="query_content" value="<%= @the_post.content %>">
-      </div>
-
-      <div>
-        <label for="chatroom_id_box">
-          Chatroom
-        </label>
-
-        <input type="text" id="chatroom_id_box" name="query_chatroom_id" value="<%= @the_post.chatroom_id %>">
       </div>
 
       <button>

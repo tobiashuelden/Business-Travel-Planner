@@ -19,6 +19,7 @@ class UserAuthenticationController < ApplicationController
       else
         session[:user_id] = user.id
         session[:user_name] = user.name
+        session[:company_id] = user.company_id
   
         
         redirect_to("/", { :notice => "Signed in successfully." })

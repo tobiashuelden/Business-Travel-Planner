@@ -1,12 +1,12 @@
 <div>
   <div>
     <h1>
-      Comment #<%= @the_comment.id %> details
+      Comment details
     </h1>
 
     <div>
       <div>
-        <a href="/comments">
+        <a href="/comments/post/<%= @the_comment.post_id %>">
           Go back
         </a>
       </div>
@@ -24,13 +24,6 @@
       </dt>
       <dd>
         <%= @the_comment.content %>
-      </dd>
-
-      <dt>
-        Post
-      </dt>
-      <dd>
-        <%= @the_comment.post_id %>
       </dd>
 
       <dt>
@@ -67,15 +60,6 @@
 
         <input type="text" id="content_box" name="query_content" value="<%= @the_comment.content %>">
       </div>
-
-      <div>
-        <label for="post_id_box">
-          Post
-        </label>
-
-        <input type="text" id="post_id_box" name="query_post_id" value="<%= @the_comment.post_id %>">
-      </div>
-
       <button>
         Update comment
       </button>
