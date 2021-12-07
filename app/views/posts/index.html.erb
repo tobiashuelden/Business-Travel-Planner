@@ -73,6 +73,8 @@
 
       </tr>
 
+      <%if @list_of_posts.present?%>
+
       <% @list_of_posts.each do |a_post| %>
       <tr>
 
@@ -106,6 +108,9 @@
         <% end %>
       </tr>
       <% end %>
+    <%else%>
+No posts
+<%end%>
     </table>
   </div>
 </div>
