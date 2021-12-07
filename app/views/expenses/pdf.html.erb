@@ -68,32 +68,16 @@
 
                 </td>
                 <td class="left">
-                <%if invoice_item.trip.start_a.present?%>
                     <%= invoice_item.trip.start_a %><br>
-                    <%else%>
-                    NA <br>
-                    <%end%>
                 </td>
                 <td class="left">
-                                <%if invoice_item.trip.end_b.present?%>
                     <%= invoice_item.trip.end_b %><br>
-                    <%else%>
-                    NA <br>
-                    <%end%>
                 </td>
                 <td class="left">
-                                <%if invoice_item.trip.start_date.present?%>
                     <%= invoice_item.trip.start_date.strftime('%d/%m/%Y') %><br>
-                    <%else%>
-                    NA <br>
-                    <%end%>
                 </td>
                 <td class="left">
-                                <%if invoice_item.trip.end_date.present?%>
                     <%= invoice_item.trip.end_date.strftime('%d/%m/%Y') %><br>
-                    <%else%>
-                    NA <br>
-                    <%end%>
                 </td>
 
                 <td class="right">

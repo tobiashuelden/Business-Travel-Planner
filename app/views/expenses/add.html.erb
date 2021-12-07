@@ -156,13 +156,31 @@
 
 <hr>
 
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<h3> Expense Overview </h3>
+
+<%= pie_chart  Expense.where({:trip_id=>@list_of_trips.ids}).group(:expense_type).sum(:expense) %>
+<%= pie_chart  Expense.where({:trip_id=>@list_of_trips.ids}).group(:payment_type).count %>
+
+<h3> Budget Overview </h3>
+<h4> Expenses over Time </h4>
+
+<%sum=0%>
+<%= area_chart  Expense.where({:trip_id=>@list_of_trips.ids}).joins(:trip).group_by_day(:start_date).sum(:expense).map { |x,y| { x => (sum += y)} }.reduce({}, :merge)%>
+
+<h4> Expenses and Budget by Type </h4>
+<%= column_chart  [
+{name: "Expenses", data: Expense.where({:trip_id=>@list_of_trips.ids}).group(:expense_type).sum(:expense)},
+{name: "Budget", data: Budget.where({:business_travel_id=>@list_of_trips.first.business_travel.id}).group(:budget_type).sum(:budget)}] %>
+
+<h4> Total Expenses vs. Total Budget </h4>
+<%= column_chart  [
+{name: "Expenses", data: Expense.where({:trip_id=>@list_of_trips.ids}).joins(trip: :business_travel).group("business_travels.description").sum(:expense)},
+{name: "Budget", data: Budget.where({:business_travel_id=>@list_of_trips.first.business_travel.id}).joins(:business_travel).group("business_travels.description").sum(:budget)}] %>
+
+<%if Expense.where({:trip_id=>@list_of_trips.ids}).present?%>
 <h3>
   <a href="/download_invoice.pdf" >  Create Business Travel Invoice/Expense Report </a>
 </h3>
-
-
-<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
-
-<%= @list_of_trips.ids%>
-<%= pie_chart  Expense.where({:trip_id=>@list_of_trips.ids}).group(:expense_type).sum(:expense) %>
-<%= pie_chart  Expense.where({:trip_id=>@list_of_trips.ids}).group(:payment_type).count %>
+<%end%>

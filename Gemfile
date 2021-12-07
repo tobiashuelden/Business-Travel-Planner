@@ -17,6 +17,7 @@ gem 'faker'
 
 gem 'chartkick'
 gem 'highcharts-rails'
+gem 'groupdate'
 
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.3'
