@@ -45,7 +45,7 @@ class BudgetsController < ApplicationController
 
     the_budget.budget = params.fetch("query_budget")
     the_budget.budget_type = params.fetch("query_budget_type")
-    the_budget.business_travel_id = params.fetch("query_business_travel_id")
+    the_budget.business_travel_id = session[:business_travel_id]
 
     if the_budget.valid?
       the_budget.save

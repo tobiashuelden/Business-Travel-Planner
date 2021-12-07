@@ -134,7 +134,14 @@
           Trip type
         </label>
 
-        <input type="text" id="trip_type_box" name="query_trip_type" value="<%= @the_trip.trip_type %>">
+        <select  id="trip_type_box" name="query_trip_type" value="<%= @the_trip.trip_type %>">
+          <option type="text" value="Flight">Flight</option>
+          <option type="text" value="Train">Train</option>
+          <option type="text" value="Taxi">Taxi</option>
+          <option type="text"  value="Hotel">Hotel</option>  
+          <option type="text"  value="Food">Food</option>
+          <option type="text"  value="Leisure">Leisure</option>
+          </select>
       </div>
 
       <div>
@@ -144,15 +151,6 @@
 
         <input type="text" id="description_box" name="query_description" value="<%= @the_trip.description %>">
       </div>
-
-      <div>
-        <label for="business_travel_id_box">
-          Business travel
-        </label>
-
-        <input type="text" id="business_travel_id_box" name="query_business_travel_id" value="<%= @the_trip.business_travel_id %>">
-      </div>
-
       <button>
         Update trip
       </button>

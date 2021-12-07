@@ -24,7 +24,7 @@ end
   def add
     matching_trips = Trip.all
     matching_trips = matching_trips.where({:business_travel_id => session[:business_travel_id]})
-    @list_of_trips = matching_trips.order({ :created_at => :desc })
+    @list_of_trips = matching_trips.order({ :start_date => :asc })
 
     session[:indicator] = TRUE
 
@@ -58,7 +58,7 @@ end
     the_expense.expense = params.fetch("query_expense")
     the_expense.expense_type = params.fetch("query_expense_type")
     the_expense.payment_type = params.fetch("query_payment_type")
-    the_expense.invoice = params.fetch("query_invoice")
+    the_expense.invoice = nil
     the_expense.description = params.fetch("query_description")
 
     if the_expense.valid?
@@ -77,7 +77,7 @@ end
     the_expense.expense = params.fetch("query_expense")
     the_expense.expense_type = params.fetch("query_expense_type")
     the_expense.payment_type = params.fetch("query_payment_type")
-    the_expense.invoice = params.fetch("query_invoice")
+    the_expense.invoice = nil
     the_expense.description = params.fetch("query_description")
 
     if the_expense.valid?
@@ -94,6 +94,6 @@ end
 
     the_expense.destroy
 
-    redirect_to("/expenses", { :notice => "Expense deleted successfully."} )
+    redirect_to("/manage_expenses", { :notice => "Expense deleted successfully."} )
   end
 end

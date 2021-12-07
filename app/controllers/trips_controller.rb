@@ -7,7 +7,7 @@ class TripsController < ApplicationController
   def index
     matching_trips = Trip.all
     matching_trips = matching_trips.where({:business_travel_id => session[:business_travel_id]})
-    @list_of_trips = matching_trips.order({ :created_at => :desc })
+    @list_of_trips = matching_trips.order({ :start_date => :asc })
 
     session[:indicator] = TRUE
     render({ :template => "trips/index.html.erb" })
@@ -51,7 +51,7 @@ class TripsController < ApplicationController
     the_trip.end_date = params.fetch("query_end_date")
     the_trip.trip_type = params.fetch("query_trip_type")
     the_trip.description = params.fetch("query_description")
-    the_trip.business_travel_id = params.fetch("query_business_travel_id")
+    the_trip.business_travel_id = session[:business_travel_id]
 
     if the_trip.valid?
       the_trip.save
