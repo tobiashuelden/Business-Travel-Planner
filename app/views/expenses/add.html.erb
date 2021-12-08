@@ -155,6 +155,12 @@
 <%end%>
 
 <hr>
+<%if Expense.where({:trip_id=>@list_of_trips.ids}).present?%>
+<h3>
+  <a href="/download_invoice.pdf" target="_blank" >  Create Business Travel Invoice/Expense Report </a>
+</h3>
+<%end%>
+<hr>
 
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
@@ -212,13 +218,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-<%if Expense.where({:trip_id=>@list_of_trips.ids}).present?%>
-<h3>
-  <a href="/download_invoice.pdf" target="_blank" >  Create Business Travel Invoice/Expense Report </a>
-</h3>
-<%end%>

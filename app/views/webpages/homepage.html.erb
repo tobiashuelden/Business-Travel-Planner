@@ -1,53 +1,88 @@
-
-<div class="jumbotron d-flex align-items-center min-vh-75"> 
-
 <div class="container h-100">
   <div class="row" >
     <div class="col my-auto">
-      <h4>
+      <h1>
 Upcoming Business Travel:  
-</h4>
+</h1>
     </div>
-    <div class="col">
+    <div class="col my-auto">
       <%if @description.present?%>
 <a href="/upcoming_business_travel"><%=@description%> </a>
 <%else%>  
-No upcoming business travels
+<h3>No upcoming business travels</h3>
 <%end%> 
     </div>
-
+  </div>
+ 
+  <div class="container px-4 py-5" id="hanging-icons">
+    <h4 class="pb-2 border-bottom">Manage Business Travels</h4>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+        </div>
+        <div>
+          <h5>Add Business Travels</h5>
+          <p>Add a new Business Travel.</p>
+          <a href="/add_business_travels" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+        </div>
+        <div>
+          <h5>Previous Business Travels</h5>
+          <p>Manage previous Business Travels.</p>
+          <a href="/business_travels_previous" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"/></svg>
+        </div>
+        <div>
+          <h5>Future Business Travels</h5>
+          <p>Manage future Business Travels.</p>
+          <a href="/business_travels_future" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="row">
-    <div class="col-4">
-      <h4>
-Manage Business Travels:  
-</h4>
-    </div>
-    <div class="col">
-       <a href="/add_business_travels"> Add Business Travels </a>
-    </div>
-        <div class="col">
-      <a href="/business_travels_previous">Previous Business Travels</a>
-    </div>
-    <div class="col">
-      <a href="/business_travels_future">Future Business Travels</a>
+<div class="container px-4 py-5" id="hanging-icons">
+    <h4 class="pb-2 border-bottom">Chatrooms</h4>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+        </div>
+        <div>
+          <h5>Public</h5>
+          <p>Chat with everyone!</p>
+          <a href="/posts/chatroom/public" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+        </div>
+        <div>
+          <h5><%=@company%></h5>
+          <p>Chat with your coworkers!</p>
+          <a href="/posts/chatroom/<%=session[:company_id]%>" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+ 
     </div>
   </div>
-
- <div class="row">
-    <div class="col-4">
-      <h4>
-Chatrooms:  
-</h4>
-    </div>
-    <div class="col">
-       <a href="/posts/chatroom/public">Public</a>
-    </div>
-        <div class="col">
-     <a href="/posts/chatroom/<%=session[:company_id]%>"><%=@company%> </a>
-    </div>
-
-  </div>
-</div>
-</div>

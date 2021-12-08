@@ -63,24 +63,47 @@
     </p>
 
 
-
-      <h2>
-        <a href="/trips">
-          Show Travel Plan
-        </a>
-      </h2>
-
-      <h2>
-        <a href="/budgets">
-          Show Travel Budget
-        </a>
-      </h2>
-      <%if Trip.where({:business_travel_id=>@the_business_travel.id}).present? && Budget.where({:business_travel_id=>@the_business_travel.id}).present? %>
-            <h2>
-        <a href="/manage_expenses">
-          Manage Travel Expenses
-        </a>
-        <%end%>
-      </h2>
-
-      
+  <div class="container px-4 py-5" id="hanging-icons">
+    <h4 class="pb-2 border-bottom">Manage Business Travels</h4>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+        </div>
+        <div>
+          <h5>Travel Plan</h5>
+          <p>Manage the Trips for the Business Travel.</p>
+          <a href="/trips" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+        </div>
+        <div>
+          <h5>Travel Budget</h5>
+          <p>Manage the Budget for the Business Travel.</p>
+          <a href="/budgets" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"/></svg>
+        </div>
+        <%if Trip.where({:business_travel_id=>@the_business_travel.id}).present? && Budget.where({:business_travel_id=>@the_business_travel.id}).present? %>
+     
+        <div>
+          <h5>Travel Expenses</h5>
+          <p>Manage the Expenses for the Business Travel.</p>
+          <a href="/manage_expenses" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+             <%end%>
+      </div>
+    </div>
+  </div>
