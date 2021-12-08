@@ -181,6 +181,6 @@
 
 <%if Expense.where({:trip_id=>@list_of_trips.ids}).present?%>
 <h3>
-  <a href="/download_invoice.pdf" >  Create Business Travel Invoice/Expense Report </a>
+  <a href="/download_invoice.pdf" target="_blank" >  Create Business Travel Invoice/Expense Report </a>
 </h3>
 <%end%>

@@ -75,11 +75,12 @@
           Show Travel Budget
         </a>
       </h2>
-
+      <%if Trip.where({:business_travel_id=>@the_business_travel.id}).present? && Budget.where({:business_travel_id=>@the_business_travel.id}).present? %>
             <h2>
         <a href="/manage_expenses">
           Manage Travel Expenses
         </a>
+        <%end%>
       </h2>
 
       

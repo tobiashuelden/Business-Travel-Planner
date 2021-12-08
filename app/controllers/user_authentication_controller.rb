@@ -47,7 +47,7 @@ class UserAuthenticationController < ApplicationController
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.company_name = params.fetch("query_company_name")
     @user.name = params.fetch("query_name")
-    @user.company_id = 1
+    @user.company_id = Company.where({:name=>@user.company_name}).at(0).id
     
     save_status = @user.save
 
