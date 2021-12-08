@@ -1,47 +1,52 @@
-<h1>Sign up</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col">
+     <h1>Sign up</h1>
 
 <form action="/insert_user" method="post">
-
-  <div>
-    <label for="email_box">Email</label>
-    <input id="email_box" name="query_email" placeholder="Choose a email..." type="text">
+  <div class="mb-3">
+    <label for="email_box" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email_box" name="query_email" placeholder="Enter your email..." aria-describedby="emailHelp">
   </div>
-                 
-  <div>
-    <label for="company_name_box">Company name</label>
-      
-        <select  id="company_name_box" name="query_company_name">
+<div>
+    <label for="company_name_box" class="form-label">Company name</label>
+        <select  id="company_name_box" name="query_company_name" class="form-control">
           <option type="text" value="Haribo">Haribo</option>
           <option type="text" value="Post">Post</option>
           <option type="text" value="Telekom">Telekom</option>
           </select>
   </div>
 
-
-         
-  <div>
-    <label for="name_box">Name</label>
+<div class="mb-3">
+    <label for="name_box" class="form-label">Name</label>
       
-    <input type="text" id="name_box" name="query_name">
+    <input type="text" id="name_box" name="query_name" class="form-control">
   </div>
-             
-  <div>
-    <label for="password_box">Password</label>
-    <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
+  
+  <div class="mb-3">
+    <label for="password_box" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password_box" name="query_password" placeholder="Enter your password...">
+  </div>
+  
+  <div class="mb-3">
+    <label for="password_confirmation_box" class="form-label">Password Confirmation</label>
+    <input type="password" class="form-control" id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." >
   </div>
 
-  <div>
-    <label for="password_confirmation_box">Password Confirmation</label>
-    <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
-  </div>
 
-  <button>
-    Sign up
-  </button>
+  <button type="submit" class="btn btn-primary">Sign up</button>
 </form>
-
-<hr>
 
 <p>
   Or, <a href="/user_sign_in">Sign in</a> instead.
 </p>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
+     

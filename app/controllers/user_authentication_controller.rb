@@ -21,8 +21,8 @@ class UserAuthenticationController < ApplicationController
         session[:user_name] = user.name
         session[:company_id] = user.company_id
   
-        
-        redirect_to("/", { :notice => "Signed in successfully." })
+        welcome = "Welcome #{session[:user_name]}" 
+        redirect_to("/", { :notice => ["Signed in successfully.", welcome]  })
       end
     else
       redirect_to("/user_sign_in", { :alert => "No user with that email address." })

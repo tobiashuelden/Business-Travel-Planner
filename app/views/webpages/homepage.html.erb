@@ -1,46 +1,53 @@
-<h1> Welcome <%=session[:user_name]%> </h1>
 
+<div class="jumbotron d-flex align-items-center min-vh-75"> 
 
-
-<h3>
+<div class="container h-100">
+  <div class="row" >
+    <div class="col my-auto">
+      <h4>
 Upcoming Business Travel:  
-<h4>
-<%if @description.present?%>
+</h4>
+    </div>
+    <div class="col">
+      <%if @description.present?%>
 <a href="/upcoming_business_travel"><%=@description%> </a>
 <%else%>  
 No upcoming business travels
-<%end%>  
+<%end%> 
+    </div>
 
-</h4>
-</h3>
+  </div>
 
-<h3>
+  <div class="row">
+    <div class="col-4">
+      <h4>
 Manage Business Travels:  
-
-<h4>
-  <a href="/add_business_travels"> Add Business Travels</a>
 </h4>
+    </div>
+    <div class="col">
+       <a href="/add_business_travels"> Add Business Travels </a>
+    </div>
+        <div class="col">
+      <a href="/business_travels_previous">Previous Business Travels</a>
+    </div>
+    <div class="col">
+      <a href="/business_travels_future">Future Business Travels</a>
+    </div>
+  </div>
 
-<h4>
-  <a href="/business_travels_previous">Previous Business Travels</a>
-</h4>
-
-<h4>
-  <a href="/business_travels_future">Future Business Travels</a>
-</h4>
-</h3>
-
-<h3>
+ <div class="row">
+    <div class="col-4">
+      <h4>
 Chatrooms:  
-
-<h4>
-  <a href="/posts/chatroom/public">Public</a>
 </h4>
+    </div>
+    <div class="col">
+       <a href="/posts/chatroom/public">Public</a>
+    </div>
+        <div class="col">
+     <a href="/posts/chatroom/<%=session[:company_id]%>"><%=@company%> </a>
+    </div>
 
-<h4>
-  <a href="/posts/chatroom/<%=session[:company_id]%>"><%=@company%> </a>
-</h4>
-</h3>
-
-
-
+  </div>
+</div>
+</div>
