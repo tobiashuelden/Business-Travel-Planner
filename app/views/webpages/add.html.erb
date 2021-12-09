@@ -1,16 +1,42 @@
  <%session[:indicator] = FALSE%>
  
- <h2>
-    <a href="/business_travels/<%=session[:business_travel_id]%>">
-      Finish Planning 
-    </a>
- <h2>
+<div class="container px-4 py-5" id="hanging-icons">
+    <h4 class="pb-2 border-bottom">Options</h4>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
+        </div>
+        <div>
+          <h5>Finish Planning </h5>
+          <a href="/business_travels/<%=session[:business_travel_id]%>" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+        </div>
+        <div>
+          <h5> Add Travel Trips</h5>
+          <a href="/add_trip" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
 
+      <div class="col d-flex align-items-start">
+        <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"/></svg>
+        </div>
+        <div>
+          <h5> Add Travel Budget</h5>
+          <a href="/add_budget" class="btn btn-primary">
+            Check Out
+          </a>
+        </div>
+      </div>
 
-<h4>
-  <a href="/add_trip"> Add Travel Trips</a>
-</h4>
-
-<h4>
-  <a href="/add_budget"> Add Travel Budget</a>
-</h4>
+    </div>
+  </div>

@@ -18,7 +18,6 @@ class User < ApplicationRecord
 
   has_many(:business_travels, { :class_name => "BusinessTravel", :foreign_key => "user_id", :dependent => :destroy })
   has_many(:posts, { :class_name => "Post", :foreign_key => "user_id", :dependent => :destroy })
-  has_many(:likes, { :class_name => "Like", :foreign_key => "user_id", :dependent => :destroy })
   belongs_to(:company, { :required => true, :class_name => "Company", :foreign_key => "company_id" })
   has_many(:trips, { :through => :business_travels, :source => :trips })
   has_many(:budgets, { :through => :business_travels, :source => :budgets })

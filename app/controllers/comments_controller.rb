@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
       the_comment.save
       redirect_to("/comments/post/#{the_comment.post_id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/comments/post/#{the_comment.post_id}", { :notice => "Comment failed to create successfully." })
+      redirect_to("/comments/post/#{the_comment.post_id}", { :alert => "Failed to create Comment." })
     end
   end
 
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
       the_comment.save
       redirect_to("/comments/post/#{the_comment.post_id}", { :notice => "Comment updated successfully."} )
     else
-      redirect_to("/comments/post/#{the_comment.post_id}", { :alert => "Comment failed to update successfully." })
+      redirect_to("/comments/post/#{the_comment.post_id}", { :alert => "Failed to update Comment." })
     end
   end
 

@@ -1,12 +1,16 @@
 <div>
   <div>
     <h1>
-      Post #<%= @the_post.id %> details
+      Post: <%=Post.where({:id=>params.fetch('path_id').to_i}).at(0).content%>
     </h1>
 
     <div>
       <div>
-        <a href="/posts">
+      <%if session[:chatroom]=='company'%>
+        <a href=<%="/posts/chatroom/#{@the_post.id}"%>>
+        <%else%>
+        <a href=<%="/posts/chatroom/public"%>>
+        <%end%>
           Go back
         </a>
       </div>

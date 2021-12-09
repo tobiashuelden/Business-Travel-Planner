@@ -3,13 +3,16 @@
           Go back
         </a>
       </div>
-<div>
-  <div>
-    <h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+          <h2>
       Edit expense
     </h2>
-
-    <%@the_expense = Expense.where({:id=>params.fetch('path_id').to_i}).at(0)%>
+    </div>
+    <div class="col">
+      <%@the_expense = Expense.where({:id=>params.fetch('path_id').to_i}).at(0)%>
     <%session[:trip_id]=@the_expense.trip_id%>
 
     <form action="/modify_expense/<%= @the_expense.id %>"  method="post" >
@@ -59,6 +62,9 @@
         Update expense
       </button>
     </form>
+    </div>
+    <div class="col">
+      
+    </div>
   </div>
 </div>
-

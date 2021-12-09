@@ -1,16 +1,19 @@
+
       <div>
         <a href="/manage_expenses">
           Go back
         </a>
       </div>
 
-<div>
-  <div>
-    <h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+          <h2>
       Add a new expense
     </h2>
-
-    <form action="/insert_expense" method="post">
+    </div>
+    <div class="col">
+      <form action="/insert_expense" method="post">
 
     <%session[:trip_id]=params.fetch('trip_id').to_i%>
 
@@ -60,5 +63,10 @@
         Create expense
       </button>
     </form>
+    </div>
+    <div class="col">
+      
+    </div>
   </div>
 </div>
+

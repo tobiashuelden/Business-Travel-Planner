@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      <%=Post.where({:id=>params.fetch('path_id').to_i}).at(0).content%>
+      Post: <%=Post.where({:id=>params.fetch('path_id').to_i}).at(0).content%>
     </h1>
   </div>
 </div>

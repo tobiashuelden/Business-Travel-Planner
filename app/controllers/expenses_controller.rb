@@ -64,7 +64,7 @@ end
       the_expense.save
       redirect_to("/manage_expenses", { :notice => "Expense created successfully." })
     else
-      redirect_to("/manage_expenses", { :notice => "Expense failed to create successfully." })
+      redirect_to("/manage_expenses", { :alert => "Failed to create Expense." })
     end
   end
 
@@ -76,14 +76,13 @@ end
     the_expense.expense = params.fetch("query_expense")
     the_expense.expense_type = params.fetch("query_expense_type")
     the_expense.payment_type = params.fetch("query_payment_type")
-    the_expense.invoice = nil
     the_expense.description = params.fetch("query_description")
 
     if the_expense.valid?
       the_expense.save
       redirect_to("/manage_expenses", { :notice => "Expense updated successfully."} )
     else
-      redirect_to("/manage_expenses", { :alert => "Expense failed to update successfully." })
+      redirect_to("/manage_expenses", { :alert => "Failed to update Expense." })
     end
   end
 

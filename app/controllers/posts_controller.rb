@@ -79,7 +79,7 @@ class PostsController < ApplicationController
         redirect_to("/posts/chatroom/#{session[:company_id]}", { :notice => "Update failed." })
       end
       if session[:chatroom]=="public" 
-          redirect_to("/posts/chatroom/public", { :notice => "Update failed." })  
+          redirect_to("/posts/chatroom/public", { :alert => "Update failed." })  
       end
         end
   end
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
       redirect_to("/posts/chatroom/#{session[:company_id]}", { :notice => "Deleted successfully." })
     end
     if session[:chatroom]=="public" 
-        redirect_to("/posts/chatroom/public", { :notice => "Deleted failed successfully." })  
+        redirect_to("/posts/chatroom/public", { :notice => "Deleted successfully." })  
     end
 
   end

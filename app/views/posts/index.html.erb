@@ -56,10 +56,6 @@
         </th>
 
         <th>
-          Created at
-        </th>
-
-        <th>
           Updated at
         </th>
 
@@ -85,17 +81,14 @@
         <td>
           <%= a_post.content %>
         </td>
-
-        <td>
-          <%= time_ago_in_words(a_post.created_at) %> ago
-        </td>
+        
         <td>
           <%= time_ago_in_words(a_post.updated_at) %> ago
         </td>
 
         <td>
           <a href="/comments/post/<%= a_post.id %>">
-            Show details
+            Show Post/ Add Comment
           </a>
 
         <%if a_post.user_id==session[:user_id]%>  

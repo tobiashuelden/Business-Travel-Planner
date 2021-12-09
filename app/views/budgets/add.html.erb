@@ -1,25 +1,12 @@
-<hr>
-
-<div>
-
-  <div>
-  <%if session[:indicator]==FALSE%>
-    <a href="/add_business_travels_overview">
-      Finish Business Travel Plan 
-    </a>
-    <%else%>
-    <a href="/business_travels/<%=session[:business_travel_id]%>">
-      Finish Business Travel Plan 
-    </a>
-    <%end%>
-  </div>
-
-  <div>
-    <h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>
       Add a new budget
     </h2>
-
-    <form action="/insert_budget" method="post">
+    </div>
+    <div class="col">
+      <form action="/insert_budget" method="post">
       <div>
         <label for="budget_box">
           Budget
@@ -48,6 +35,18 @@
         Create budget
       </button>
     </form>
+    </div>
+    <div class="col">
+      <%if session[:indicator]==FALSE%>
+    <a href="/add_business_travels_overview">
+      Finish Business Travel Plan 
+    </a>
+    <%else%>
+    <a href="/business_travels/<%=session[:business_travel_id]%>">
+      Finish Business Travel Plan 
+    </a>
+    <%end%>
+    </div>
   </div>
 </div>
 

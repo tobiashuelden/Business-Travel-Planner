@@ -37,7 +37,7 @@ class TripsController < ApplicationController
       the_trip.save
       redirect_to("/add_trip", { :notice => "Trip created successfully." })
     else
-      redirect_to("/add_trip", { :notice => "Trip failed to create successfully." })
+      redirect_to("/add_trip", { :alert => "Failed to create Trip." })
     end
   end
 
@@ -57,7 +57,7 @@ class TripsController < ApplicationController
       the_trip.save
       redirect_to("/trips/#{the_trip.id}", { :notice => "Trip updated successfully."} )
     else
-      redirect_to("/trips/#{the_trip.id}", { :alert => "Trip failed to update successfully." })
+      redirect_to("/trips/#{the_trip.id}", { :alert => "Failed to update Trip." })
     end
   end
 
