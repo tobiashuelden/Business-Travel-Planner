@@ -55,23 +55,7 @@ ActiveRecord::Schema.define(version: 2021_12_04_234715) do
     t.integer "expense"
     t.string "expense_type"
     t.string "payment_type"
-    t.string "invoice"
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string "caption"
-    t.string "location"
-    t.integer "post_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

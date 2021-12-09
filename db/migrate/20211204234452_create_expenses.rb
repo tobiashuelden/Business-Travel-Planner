@@ -5,7 +5,6 @@ class CreateExpenses < ActiveRecord::Migration[6.0]
       t.integer :expense
       t.string :expense_type
       t.string :payment_type
-      t.string :invoice
       t.string :description
 
       t.timestamps

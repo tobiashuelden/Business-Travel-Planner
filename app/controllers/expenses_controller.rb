@@ -58,7 +58,6 @@ end
     the_expense.expense = params.fetch("query_expense")
     the_expense.expense_type = params.fetch("query_expense_type")
     the_expense.payment_type = params.fetch("query_payment_type")
-    the_expense.invoice = nil
     the_expense.description = params.fetch("query_description")
 
     if the_expense.valid?

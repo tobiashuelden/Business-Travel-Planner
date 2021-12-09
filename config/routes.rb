@@ -61,44 +61,6 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # Routes for the Like resource:
-
-  # CREATE
-  post("/insert_like", { :controller => "likes", :action => "create" })
-          
-  # READ
-  get("/likes", { :controller => "likes", :action => "index" })
-  
-  get("/likes/:path_id", { :controller => "likes", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_like/:path_id", { :controller => "likes", :action => "update" })
-  
-  # DELETE
-  get("/delete_like/:path_id", { :controller => "likes", :action => "destroy" })
-
-  #------------------------------
-
-  # Routes for the Image resource:
-
-  # CREATE
-  post("/insert_image", { :controller => "images", :action => "create" })
-          
-  # READ
-  get("/images", { :controller => "images", :action => "index" })
-  
-  get("/images/:path_id", { :controller => "images", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_image/:path_id", { :controller => "images", :action => "update" })
-  
-  # DELETE
-  get("/delete_image/:path_id", { :controller => "images", :action => "destroy" })
-
-  #------------------------------
-
   # Routes for the Post resource:
 
   # CREATE
