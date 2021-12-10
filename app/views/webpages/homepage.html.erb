@@ -6,8 +6,8 @@ Upcoming Business Travel:
 </h1>
     </div>
     <div class="col my-auto">
-      <%if @description.present?%>
-<a href="/upcoming_business_travel"> <h2><%=@description%> <h2></a>
+      <%if @upcoming_travel.present?%>
+<a href="/upcoming_business_travel"> <h2><%=@upcoming_travel.description%> <h2></a>
 <%else%>  
 <h2>No upcoming business travels</h2>
 <%end%> 

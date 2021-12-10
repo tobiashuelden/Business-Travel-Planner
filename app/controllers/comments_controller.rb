@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def index
     matching_comments = Comment.all
     matching_comments = matching_comments.where({:post_id=>params.fetch('path_id').to_i})
-    @list_of_comments = matching_comments.order({ :created_at => :desc })
+    @list_of_comments = matching_comments.order({ :updated_at => :asc })
 
     render({ :template => "comments/index.html.erb" })
   end
